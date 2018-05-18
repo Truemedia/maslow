@@ -2,10 +2,14 @@ const pyramid = require('./pyramid.json');
 
 class Maslow
 {
-    constructor(stage = null)
+    constructor(stage = null, )
     {
         this.stage = stage;
         this.levels = pyramid;
+        this.fulfillment = {};
+        this.stages.map( (stage) => {
+            this.fulfillment[stage] = [];
+        });
     }
 
     /**
@@ -40,6 +44,33 @@ class Maslow
     }
 
     /**
+      * Get current needs
+      * @return {array} Needs
+      */
+    get needs()
+    {
+        return this.needsForStage(this.stage).filter( (need) => {
+            return (this.needsFulfilled.indexOf(need) == -1);
+        });
+    }
+
+    /**
+      * Get current needs fulfilled
+      */
+    get needsFulfilled()
+    {
+        return this.fulfillment[this.stage];
+    }
+
+    /**
+      * Check if needs have been met
+      */
+    get needsMet()
+    {
+        return (this.needs.length == 0);
+    }
+
+    /**
       * Get needs for stage
       * @param {string} stage - Name of stage
       * @return {array} Needs
@@ -50,12 +81,34 @@ class Maslow
     }
 
     /**
-      * Get current needs
-      * @return {array} Needs
+      * Advance to next stage
       */
-    get needs()
+    advanceStage()
     {
-        return this.needsForStage(this.stage);
+        this.stage = this.nextStage;
+    }
+
+    /**
+      * Fulfill need
+      * @param {string} need - Need for current stage
+      */
+    fulfillNeed(need, advance = false)
+    {
+        this.fulfillment[this.stage].push(need);
+        if (this.needsMet && advance) {
+            this.advanceStage();
+        }
+    }
+
+    /**
+      * Fulfill needs
+      * @param {array} needs - Needs for current stage
+      */
+    fulfillNeeds(needs)
+    {
+        needs.forEach( (need) => {
+            this.fulfillNeed(need);
+        });
     }
 }
 
