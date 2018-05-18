@@ -23,3 +23,8 @@ if (person.needsMet) {
 // Move onto next stage (manually)
 person.advanceStage();
 console.log(`Person is at the stage: ${person.stage}`);
+// Throw in a random need
+need = 'short-term-gratification';
+person.calibrate(need);
+console.log(`Person has sudden need for: ${person.needs}`);
+console.log(`Person is now at the stage: ${person.stage}`);

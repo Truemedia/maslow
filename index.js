@@ -2,14 +2,34 @@ const pyramid = require('./pyramid.json');
 
 class Maslow
 {
-    constructor(stage = null, )
+    constructor(stage = null)
     {
         this.stage = stage;
-        this.levels = pyramid;
         this.fulfillment = {};
         this.stages.map( (stage) => {
             this.fulfillment[stage] = [];
         });
+    }
+
+    /**
+      * Calibrate stage and needs based on focus of need
+      * @param {string} currentNeed - Name of need
+      */
+    calibrate(currentNeed)
+    {
+        this.stage = this.stageOfNeed(currentNeed);
+        let needs = Array.from( this.needsForStage(this.stage) );
+        needs.splice(needs.indexOf(currentNeed), 1);
+        this.fulfillment[this.stage] = needs;
+    }
+
+    /**
+      * Get levels of pyramid
+      * @return {object} Pyramid
+      */
+    get levels()
+    {
+        return pyramid;
     }
 
     /**
@@ -50,7 +70,7 @@ class Maslow
     get needs()
     {
         return this.needsForStage(this.stage).filter( (need) => {
-            return (this.needsFulfilled.indexOf(need) == -1);
+            return (!this.needsFulfilled.includes(need));
         });
     }
 
@@ -86,6 +106,16 @@ class Maslow
     advanceStage()
     {
         this.stage = this.nextStage;
+    }
+
+    /**
+      * Find stage of need
+      */
+    stageOfNeed(need)
+    {
+        return this.stages.find( (stage) => {
+            return this.needsForStage(stage).includes(need);
+        });
     }
 
     /**
