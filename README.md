@@ -15,6 +15,7 @@ const Maslow = require('maslow');
 let pyramidStage = 'physiological';
 let person = new Maslow(pyramidStage);
 ```
+See the test.js for example of function calls to the library 
 
 ## License
 
