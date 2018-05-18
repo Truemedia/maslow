@@ -11,8 +11,9 @@ $ npm install --save maslow
 ## Usage
 
 ```js
-const maslow = require('maslow');
-maslow();
+const Maslow = require('maslow');
+let pyramidStage = 'physiological';
+let person = new Maslow(pyramidStage);
 ```
 
 ## License
