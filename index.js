@@ -1,4 +1,4 @@
-const pyramid = require('./pyramid.json');
+const pyramid = require('./data/pyramid.json');
 
 class Maslow
 {
