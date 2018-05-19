@@ -28,3 +28,27 @@ need = 'short-term-gratification';
 person.calibrate(need);
 console.log(`Person has sudden need for: ${person.needs}`);
 console.log(`Person is now at the stage: ${person.stage}`);
+// Guess needs from phrasing (machine learning classifier)
+let phrases = [
+    'Has to breathe',
+    'Has to eat',
+    'Has to drink',
+    'Has to live somewhere',
+    'Has to rest',
+    'Is not safe',
+    'Has money issues',
+    'Is sick',
+    'Is anxious',
+    'Is loney and wants to be surrounded by people',
+    'Is loney and wants to be close with someone',
+    'Is lonely with noone to talk to',
+    'Nothing to do today',
+    'Is feeling incapable',
+    'Is feeling worthless',
+    'Wants to make big plans',
+    'Wants to always remember a new experience'
+];
+phrases.forEach( function(phrase) {
+    need = person.guessNeed(phrase);
+    console.log(`Person: ${phrase} (${need})`);
+});

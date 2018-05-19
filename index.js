@@ -1,4 +1,6 @@
+const natural = require('natural');
 const pyramid = require('./data/pyramid.json');
+const trainingData = require('./data/sample.json');
 
 class Maslow
 {
@@ -6,9 +8,24 @@ class Maslow
     {
         this.stage = stage;
         this.fulfillment = {};
+        // Set all needs as not met
         this.stages.map( (stage) => {
             this.fulfillment[stage] = [];
         });
+        // Classifier for matching phrase to need
+        this.classifier = new natural.BayesClassifier();
+        trainingData.forEach( (entry) => {
+            this.classifier.addDocument(entry.phrase, entry.need);
+        });
+        this.classifier.train();
+    }
+
+    /**
+      * Guess need by using classifier trained with machine learning for absolute datasets
+      */
+    guessNeed(phrase)
+    {
+        return this.classifier.classify(phrase);
     }
 
     /**
