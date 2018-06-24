@@ -1,10 +1,10 @@
 const natural = require('natural');
 const pyramid = require('./data/pyramid.json');
-const trainingData = require('./data/sample.json');
+const basicTrainingData = require('./data/sample.json');
 
 class Maslow
 {
-    constructor(stage = null)
+    constructor(stage = null, trainingData = null)
     {
         this.stage = stage;
         this.fulfillment = {};
@@ -13,6 +13,7 @@ class Maslow
             this.fulfillment[stage] = [];
         });
         // Classifier for matching phrase to need
+        if (trainingData == null) { trainingData = basicTrainingData; }
         this.classifier = new natural.BayesClassifier();
         trainingData.forEach( (entry) => {
             this.classifier.addDocument(entry.phrase, entry.need);
