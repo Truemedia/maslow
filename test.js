@@ -1,7 +1,7 @@
-const maslow = require('./index');
+const {Maslow} = require('./index');
 
 // Make a person with most basic needs
-let person = new maslow('physiological');
+let person = new Maslow('physiological');
 console.log(`The pyramid of needs has the following stages: ${person.stages}`);
 console.log(`Person is at the stage: ${person.stage}`);
 console.log(`Previous stage is: ${person.prevStage}`);

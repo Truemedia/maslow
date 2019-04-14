@@ -11,11 +11,29 @@ $ npm install --save maslow
 ## Usage
 
 ```js
-const Maslow = require('maslow');
+const {Maslow} = require('maslow');
 let pyramidStage = 'physiological';
-let person = new Maslow(pyramidStage);
+let trainingData = [
+    {
+        "phrase": "cannot breathe",
+        "need": "air"
+    },
+    {
+        "phrase": "need to drink",
+        "need": "water"
+    },
+    {
+        "phrase": "need to eat",
+        "need": "food"
+    }
+];
+let person = new Maslow(pyramidStage, trainingData);
 ```
-See the test.js for example of function calls to the library 
+See the test.js for example of function calls to the library
+
+## Tests
+
+Run `node test.js`. If you get no errors and see the full scenario text play out then everything is fine.
 
 ## License
 
