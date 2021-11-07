@@ -1,5 +1,6 @@
 {
     "name": "sleep",
+    "category": "physiological",
     "deprevation": {
         "intervals": {
             "baseline": "16 hours",
