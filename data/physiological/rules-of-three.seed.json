@@ -1,0 +1,38 @@
+[
+    {
+        "name": "air",
+        "deprevation": {
+            "intervals": {
+                "baseline": "1 second",
+                "fatal": "3 minutes"
+            }
+        }
+    },
+    {
+        "name": "shelter",
+        "deprevation": {
+            "intervals": {
+                "baseline": "15 minutes",
+                "fatal": "3 hours"
+            }
+        }
+    },
+    {
+        "name": "water",
+        "deprevation": {
+            "intervals": {
+                "baseline": "1 hour",
+                "fatal": "3 days"
+            }
+        }
+    },
+    {
+        "name": "food",
+        "deprevation": {
+            "intervals": {
+                "baseline": "3 hours",
+                "fatal": "3 weeks"
+            }
+        }
+    }
+]

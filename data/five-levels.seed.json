@@ -1,0 +1,22 @@
+[
+    {
+        "name": "self-actualization",
+        "lvl": 5
+    },
+    {
+        "name": "esteem",
+        "lvl": 4
+    },
+    {
+        "name": "belonging",
+        "lvl": 3
+    },
+    {
+        "name": "safety",
+        "lvl": 2
+    },
+    {
+        "name": "physiological",
+        "lvl": 1
+    }
+]

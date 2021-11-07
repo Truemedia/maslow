@@ -1,0 +1,9 @@
+{
+    "name": "sleep",
+    "deprevation": {
+        "intervals": {
+            "baseline": "16 hours",
+            "fatal": "24 hours"
+        }
+    }
+}
