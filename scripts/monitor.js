@@ -1,13 +1,21 @@
 const { Temporal, Intl, toTemporalInstant } = require('@js-temporal/polyfill');
 Date.prototype.toTemporalInstant = toTemporalInstant;
 
-const fatalityMonitor = async () => {
+async function fatalityMonitor() {
     return Promise.race([
-        new Promise((resolve) => setTimeout(resolve, 5000, 'not ok')),
-        new Promise((resolve) => setTimeout(resolve, 4000, 'ok'))
+        new Promise((resolve) => setTimeout(resolve, 3000, 'not ok')),
+        new Promise((resolve) => setTimeout(resolve, 2000, 'ok'))
     ])
 }
 
-fatalityMonitor().then( (outcome) => {
-    console.log(`outcome: ${outcome}`)
-})
+
+
+async function run() {
+    while (true) {
+        await fatalityMonitor().then( (outcome) => {
+            console.log(`outcome: ${outcome}`)
+        })
+    }
+}
+
+run()
